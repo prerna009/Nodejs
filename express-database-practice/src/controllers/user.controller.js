@@ -35,7 +35,41 @@ export const createUser = async (req, res) => {
 // GET /users
 export const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        // return all records
+        // const users = await User.find();
+
+        // return matching records with name starting from "pre" and this is insensitive
+        // const users = await User.find({
+        //     name: { $regex: "pre", $options: "i" }
+        // });
+
+        // return age which is greater than or equal to 20
+        // const users = await User.find({
+        //     age: { $gte: 20 }
+        // });
+
+        // return combining condition like name "pre" or age is $gte to 20
+        // const users = await User.find({
+        //     $or: [
+        //         { name: { $regex: "Su" }},
+        //         { age: { $gte: 30 }}
+        //     ]
+        // });
+
+        // Sorting by name 1 means ascending -1 means descending
+        // const users = await User.find().sort({ name: -1 });
+
+        // sorting by createdAt
+        // const users = await User.find().sort({ createdAt: -1 });
+
+        // return name and email fields and _id by default 
+        // const users = await User.find().select("name email");
+
+        // exclude email fields
+        // const users = await User.find().select("-email");
+
+        // using lean
+        const users = await User.find().lean();
 
         res.status(200).json({
             count: users.length,
