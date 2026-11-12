@@ -55,7 +55,7 @@ export const createUser = async (req, res) => {
     }
 
     const newUser = {
-        id: nextId,
+        id: nextId++,
         name: body.name,
         email: body.email,
         age: Number(body.age),
